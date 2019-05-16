@@ -1,18 +1,24 @@
 aspect NameResolution {
+  // Exp
+  inh Def Exp.lookup(String name);
 
-  syn Def Var.getDef();
-  eq Var.getDef() {
-    String name = getName();
-    ASTNode p = (ASTNode)this;
-    while(p.parent != null) {
-        p = p.parent;
+  // Root
+  eq Root.getExp().lookup(String name) {
+    // Root context
+    for (int i = 0; i < getNumDef(); i++) {
+        Def d = getDef(i).isEquals(name);
+        if (d != null) return d;
     }
-    for(ASTNode def : p.children[0].children) {
-        if(def == null) continue;
-        if(((Def)def).getName().equals(name)) {
-            return (Def)def;
-        }
-    }
-    return new Def();
+    return null;
+  }
+
+  //  Def
+  syn Def Def.isEquals(String name) {
+        if (getName().equals(name)) return this;
+        return null;
+  }
+
+  syn Def Var.getDef() {
+    return lookup(getName());
   }
 }
