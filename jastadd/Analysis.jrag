@@ -6,7 +6,7 @@ aspect Analysis {
         when !getExpRoot().isUsed(this)
         to Root.unusedDefs();
 
-//  Search definition in expression tree
+//  Search the definition in the expression tree
   syn boolean Exp.isUsed(Def d) = false;
   eq BinExp.isUsed(Def d) = getA().isUsed(d) || getB().isUsed(d);
   eq UnExp.isUsed(Def d) = getA().isUsed(d);
@@ -14,7 +14,7 @@ aspect Analysis {
       return getName().equals(d.getName());
   }
 
-//  Get the expression 
+//  Get the expression
   syn Exp Def.getExpRoot() {
     return (Exp) ((Root) getParent().getParent()).getExp();
   }
