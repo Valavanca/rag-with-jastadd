@@ -1,8 +1,22 @@
 aspect Analysis {
 
   coll java.util.Set<Def> Root.unusedDefs() [new java.util.HashSet<Def>()] with add root Root;
-  // TODO contribution statement
 
-  // TODO additional helper attribute may be needed!
+  Def contributes this
+        when !getExpRoot().isUsed(this)
+        to Root.unusedDefs();
+
+//  Search definition in expression tree
+  syn boolean Exp.isUsed(Def d) = false;
+  eq BinExp.isUsed(Def d) = getA().isUsed(d) || getB().isUsed(d);
+  eq UnExp.isUsed(Def d) = getA().isUsed(d);
+  eq Var.isUsed(Def d) {
+      return getName().equals(d.getName());
+  }
+
+//  Get the expression 
+  syn Exp Def.getExpRoot() {
+    return (Exp) ((Root) getParent().getParent()).getExp();
+  }
 
 }
