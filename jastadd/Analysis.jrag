@@ -3,7 +3,7 @@ aspect Analysis {
   coll java.util.Set<Def> Root.unusedDefs() [new java.util.HashSet<Def>()] with add root Root;
 
   Def contributes this
-        when !getExpRoot().isUsed(this)
+        when !isUsed()
         to Root.unusedDefs();
 
 //  Search the definition in the expression tree
@@ -14,9 +14,8 @@ aspect Analysis {
       return getName().equals(d.getName());
   }
 
-//  Get the expression
-  syn Exp Def.getExpRoot() {
-    return (Exp) ((Root) getParent().getParent()).getExp();
-  }
+//  Bind Def with Exp
+  inh boolean Def.isUsed();
+  eq Root.getDef(int i).isUsed() = getExp().isUsed(getDef(i));
 
 }
