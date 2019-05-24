@@ -1,0 +1,24 @@
+aspect NameResolution {
+  // Exp
+  inh Def Exp.lookup(String name);
+
+  // Root
+  eq Root.getExp().lookup(String name) {
+    // Root context
+    for (int i = 0; i < getNumDef(); i++) {
+        Def d = getDef(i).isEquals(name);
+        if (d != null) return d;
+    }
+    return null;
+  }
+
+  //  Def
+  syn Def Def.isEquals(String name) {
+        if (getName().equals(name)) return this;
+        return null;
+  }
+
+  syn Def Var.getDef() {
+    return lookup(getName());
+  }
+}

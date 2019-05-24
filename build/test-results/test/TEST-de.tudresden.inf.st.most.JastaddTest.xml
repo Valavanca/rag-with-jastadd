@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="de.tudresden.inf.st.most.JastaddTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2019-05-24T15:04:23" hostname="hal" time="0.213">
+  <properties/>
+  <testcase name="testTask0" classname="de.tudresden.inf.st.most.JastaddTest" time="0.183"/>
+  <testcase name="testTask1" classname="de.tudresden.inf.st.most.JastaddTest" time="0.013"/>
+  <testcase name="testTask2" classname="de.tudresden.inf.st.most.JastaddTest" time="0.008"/>
+  <testcase name="testTask3" classname="de.tudresden.inf.st.most.JastaddTest" time="0.009"/>
+  <system-out><![CDATA[Loading JSON file 'generatedBegin.json'.
+Loading expression DSL file 'generatedBegin.exp'.
+Loading JSON file 'generatedTask1.json'.
+Loading expression DSL file 'generatedTask1.exp'.
+Loading JSON file 'generatedTask2.json'.
+Loading expression DSL file 'generatedTask2.exp'.
+Loading JSON file 'generatedTask3.json'.
+Loading expression DSL file 'generatedTask3.exp'.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

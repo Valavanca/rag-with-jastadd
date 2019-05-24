@@ -1,0 +1,48 @@
+%header {: // Generated from /home/valavanca/Documents/hal/jastadd-exercise/jastadd_task/build/tmp/preprocessParser/ExpressionParser.all
+package de.tudresden.inf.st.most.jastadd.parser;
+ import de.tudresden.inf.st.most.jastadd.ast.*; :};
+%terminals IDENTIFIER;
+%terminals EQUALS;
+%terminals MINUS;
+%terminals NUMBER;
+%terminals NEWLINE;
+%terminals LP;
+%terminals PLUS;
+%terminals RP;
+%terminals MULT;
+%terminals DIV;
+%typeof goal = "expressions";
+%typeof def = "Def";
+%typeof exp = "Exp";
+%typeof def_list = "List";
+%goal goal;
+goal =
+    exp.exp {: return new Root(new List<Def>(), exp); :}
+
+  | def_list.def_list exp.exp {: return new Root(def_list, exp); :}
+  ;
+def_list =
+    def.def {: return new List().add(def); :}
+
+  | def_list.def_list def.def {: return def_list.add(def); :}
+  ;
+def =
+    IDENTIFIER.IDENTIFIER EQUALS.EQUALS MINUS.MINUS NUMBER.NUMBER NEWLINE.NEWLINE {: return new Def((String)IDENTIFIER.value, -Float.parseFloat((String)NUMBER.value)); :}
+
+  | IDENTIFIER.IDENTIFIER EQUALS.EQUALS NUMBER.NUMBER NEWLINE.NEWLINE {: return new Def((String)IDENTIFIER.value, Float.parseFloat((String)NUMBER.value)); :}
+  ;
+exp =
+    LP.LP exp.a PLUS.PLUS exp.b RP.RP {: return new AddExp(a, b); :}
+
+  | LP.LP exp.a MULT.MULT exp.b RP.RP {: return new MulExp(a, b); :}
+
+  | LP.LP exp.a DIV.DIV exp.b RP.RP {: return new DivExp(a, b); :}
+
+  | LP.LP exp.a MINUS.MINUS exp.b RP.RP {: return new MinusExp(a, b); :}
+
+  | MINUS.MINUS exp.a {: return new UnaryMinusExp(a); :}
+
+  | NUMBER.NUMBER {: return new de.tudresden.inf.st.most.jastadd.ast.Number(Float.parseFloat((String)NUMBER.value)); :}
+
+  | IDENTIFIER.IDENTIFIER {: return new Var((String)IDENTIFIER.value); :}
+  ;

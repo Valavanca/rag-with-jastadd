@@ -1,14 +1,31 @@
-### Reference Attribute Grammars with JastAdd
+## Reference Attribute Grammars with JastAdd
 
-Reference Attribute Grammars (RAGs) and JastAdd, a Java implementation for [RAGs](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.108.8792&rep=rep1&type=pdf) are introduced. Developed a RAG specification for a small expression language, that can evaluate simple
-expressions. JastAdd is a tool that generates a Java implementation of a given RAG comprising of context-free grammar and a set of attribute definitions
+If there are questions regarding the exercise, please refer to Johannes Mey
+at johannes.mey@tu-dresden.de. However, before asking questions, please read the
+JastAdd reference manual:
 
-##### Tasks: 
-- Extension of expression language
-- Rewrite to optimize
-- Code analysis 
+* <http://jastadd.org/web/documentation/reference-manual.php>
 
-##### The contents are as follows in `/jastadd`:
+## Building and Running JastAdd with Gradle
+
+This exercise uses gradle to get dependencies and build and test its solutions.
+Gradle is bundled for Linux/Mac and Windows and the bundled version should be
+used with `./gradlew` or `gradlew.bat`, respectively.
+
+
+The following gradle tasks are helpful to solve the tasks:
+
+* `run` runs the main method in class `de.tudresden.inf.st.most.ExerciseMain`
+* `test` runs the tests. There are tests that should succeed after a
+ particular task has been solved.
+* `DrAST` is an editor that displays syntax trees. It can be used to load and
+ display `json` or `exp` files. Attribute values and reference attribute
+ references are shown.
+* `RagDoll` is a javadoc variant for JastAdd.
+
+## Structure of the Exercise
+
+All JastAdd files that must be edited are in the `src/main/jastadd` folder. The contents are as follows:
 
 * `expressions.ast` is the grammar
 * `expressions.flex` contains the jflex lexer specification
@@ -20,9 +37,19 @@ expressions. JastAdd is a tool that generates a Java implementation of a given R
 * `Analysis.jrag` should contain the unused definitions attribute
 * `ASTPrinting.jadd` contains helper methods to display the AST
 
-A complete set of source files to run is available on the course [page](https://tu-dresden.de/ing/informatik/smt/st/studium/lehrveranstaltungen?subject=353&lang=en&leaf=1&head=3&embedding_id=47eddfa7c5a54ed5be49042aff35a31b).
+Additionally, the main class `de.tudresden.inf.st.most.ExerciseMain` can be
+modified to test the code. Please be careful when editing, because DrAST
+relies on a certain structure (in particular, on field `DrAST_root_node`
+containing an AST root node).
 
-##### Usefull links: 
-- [JastAdd](http://jastadd.org)  
-- [JastAdd source](https://bitbucket.org/jastadd/jastadd2)
-- [JastAdd manual](http://jastadd.org/web/documentation/reference-manual.php)
+## Editing the Lexer and Parser
+
+No additional help is given for editing the lexer and parser specifications as
+this is more or less trivial copy-and-paste. If more help is required, please
+refer to the websites:
+* <http://www.jflex.de/>
+* <http://beaver.sourceforge.net/>
+
+## Submitting the Exercise
+
+Please submit `src/main/` and its subfolders.

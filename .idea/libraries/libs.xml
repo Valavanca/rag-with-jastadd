@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/DrAST-1.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/tools.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/RagDoll.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
